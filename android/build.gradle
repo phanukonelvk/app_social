@@ -5,6 +5,10 @@ allprojects {
     }
 }
 
+dependencies {
+        classpath "com.google.firebase:firebase-appdistribution-gradle:1.1.0"
+    }
+
 rootProject.buildDir = "../build"
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
