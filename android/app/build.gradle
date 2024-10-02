@@ -4,7 +4,7 @@ plugins {
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
     id 'com.google.gms.google-services'
-    id 'com.google.firebase.appdistribution'
+    
 }
 
 def localProperties = new Properties()
@@ -44,18 +44,12 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
-        multiDexEnabled true
+        
     }
 
     signingConfigs {
         release {
-            firebaseAppDistribution {
-                    appId = "1:557883402125:android:c21455a3ba2f6ce90b7fc4" // Replace with your actual Firebase App ID for android application
-                    // If CI enviroment, use remote machine service account file path, else use local path from local machine
-                    // serviceCredentialsFile= System.getenv()["CI"] ? "/your/own/path/to/service_account_json_file/on/remote/codemagic/executive/machine": System.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-                    testers="phanukonelvk@gmail.com" // write testers here you want to publish forandroid build
-                    groups= "appzap" // group name on android
-                }
+            
             if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
                 storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
                 storePassword System.getenv()["CM_KEYSTORE_PASSWORD"]
